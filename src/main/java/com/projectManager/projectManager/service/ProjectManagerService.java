@@ -41,5 +41,13 @@ public interface ProjectManagerService {
 	 * @param parent
 	 */
 	void saveParentDetails(Parent parent);
+	/**
+	 * @param task
+	 */
+	void saveTaskDetails(Task task);
+	/**
+	 * @return
+	 */
+	int getProjectCount(Project project);
 	
 }

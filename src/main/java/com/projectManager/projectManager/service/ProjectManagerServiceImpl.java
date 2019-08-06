@@ -107,4 +107,22 @@ public class ProjectManagerServiceImpl implements ProjectManagerService {
 		projectManagerParentRepository.save(parent);
 		
 	}
+
+	/* (non-Javadoc)
+	 * @see com.projectManager.projectManager.service.ProjectManagerService#saveTaskDetails(com.projectManager.projectManager.domain.Task)
+	 */
+	@Override
+	public void saveTaskDetails(Task task) {
+		projectManagerTaskRepository.save(task);
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see com.projectManager.projectManager.service.ProjectManagerService#getProjectCount()
+	 */
+	@Override
+	public int getProjectCount(Project project) {
+		// TODO Auto-generated method stub
+		return projectManagerTaskRepository.countByProjectProjectId(project.getProjectId());
+	}
 }

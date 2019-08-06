@@ -18,5 +18,11 @@ import com.projectManager.projectManager.domain.Task;
 @Repository
 public interface ProjectManagerTaskRepository extends JpaRepository<Task, Long> {
 
+	/**
+	 * @param projectId
+	 * @return
+	 */
+	int countByProjectProjectId(long projectId);
+
 	
 }

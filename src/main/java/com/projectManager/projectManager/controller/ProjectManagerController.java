@@ -11,6 +11,7 @@ import java.util.*;
 
 import com.projectManager.projectManager.domain.Parent;
 import com.projectManager.projectManager.domain.Project;
+import com.projectManager.projectManager.domain.ProjectView;
 import com.projectManager.projectManager.domain.Task;
 import com.projectManager.projectManager.domain.User;
 import com.projectManager.projectManager.service.ProjectManagerService;
@@ -71,11 +72,26 @@ public class ProjectManagerController {
 	}
 
 	@GetMapping(value="/getProjects",produces=MediaType.APPLICATION_JSON_VALUE)
-	public List<Project> getProjectDetails(){
+	public List<ProjectView> getProjectDetails(){
 		List<Project> projects=projectManagerService.getProjectDetails();
-		 
+		List<ProjectView> projectsView=new ArrayList<ProjectView>();
+	
+		for(Project project : projects){
+			ProjectView projectView = new ProjectView();
+			projectView.setProjectId(project.getProjectId());
+			projectView.setProjectName(project.getProjectName());
+			projectView.setStartDate(project.getStartDate());
+			projectView.setEndDate(project.getEndDate());
+			projectView.setPriority(project.getPriority());
+			projectView.setProjectStatus(project.isProjectStatus());
+			projectView.setUser(project.getUser());
+			projectView.setTaskCount(projectManagerService.getProjectCount(project));
+			
+			projectsView.add(projectView);
+			
+		}
 		//System.console().writer().println("project object:" + projects);
-		return projects;
+		return projectsView;
 	}
 	
 	@DeleteMapping(value="/deleteProject/{project_id}")
@@ -90,6 +106,12 @@ public class ProjectManagerController {
 		//System.console().writer().println("Task object:" + tasks);
 		return tasks;
 	}
+	
+	@PostMapping(value="/addTask",consumes=MediaType.APPLICATION_JSON_VALUE)
+	public void addTaskDetails(@RequestBody Task task){
+		projectManagerService.saveTaskDetails(task); 
+	}
+	
 	
 	@GetMapping(value="/getParents",produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Parent> getParentDetails(){

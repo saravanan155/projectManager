@@ -15,104 +15,64 @@ import javax.persistence.Table;
  * @author n0241133
  *
  */
+ 
+public class ProjectView {
 
-@Entity
-@Table(name="projects") 
-public class Project {
-
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="project_id")
 	private long projectId;
 	
 	private String projectName;
 	private Date startDate;
 	private Date endDate;
 	private int priority;
+	private User manager;
 	private boolean projectStatus;
+	private int taskCount;
 	
-	/**
-	 * @return the projectStatus
-	 */
 	public boolean isProjectStatus() {
 		return projectStatus;
 	}
-
-	/**
-	 * @param projectStatus the projectStatus to set
-	 */
 	public void setProjectStatus(boolean projectStatus) {
 		this.projectStatus = projectStatus;
 	}
-	@ManyToOne
-	@JoinColumn(name="user_id")	
-	private User manager;
-	
+	public int getTaskCount() {
+		return taskCount;
+	}
+	public void setTaskCount(int taskCount) {
+		this.taskCount = taskCount;
+	}
 	public User getUser() {
 		return manager;
 	}
-	
 	public void setUser(User user) {
 		this.manager = user;
 	}
-	
-	/**
-	 * @return the endDate
-	 */
 	public Date getEndDate() {
 		return endDate;
 	}
-	/**
-	 * @return the priority
-	 */
 	public int getPriority() {
 		return priority;
 	}
-	/**
-	 * @return the projectId
-	 */
 	public long getProjectId() {
 		return projectId;
 	}
-	/**
-	 * @return the projectName
-	 */
 	public String getProjectName() {
 		return projectName;
 	}
-	/**
-	 * @return the startDate
-	 */
 	public Date getStartDate() {
 		return startDate;
 	}
-	/**
-	 * @param endDate the endDate to set
-	 */
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	/**
-	 * @param priority the priority to set
-	 */
 	public void setPriority(int priority) {
 		this.priority = priority;
 	}
-	/**
-	 * @param projectId the projectId to set
-	 */
-	public void setProjectId(int projectId) {
+	public void setProjectId(long projectId) {
 		this.projectId = projectId;
 	}
-	/**
-	 * @param projectName the projectName to set
-	 */
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
 	}
-	/**
-	 * @param startDate the startDate to set
-	 */
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}

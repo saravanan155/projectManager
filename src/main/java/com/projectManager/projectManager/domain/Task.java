@@ -38,7 +38,7 @@ public class Task {
 	
 	@ManyToOne
 	@JoinColumn(name="user_id")
-	private User developer;
+	private User user;
 	
 	@ManyToOne
 	@JoinColumn(name="project_id")
@@ -139,18 +139,18 @@ public class Task {
 	}
 
 	/**
-	 * @return the developer
+	 * @return the user
 	 */
-	public User getDeveloper() {
-		return developer;
+	public User getUser() {
+		return user;
 	}
 
 	/**
-	 * @param developer
-	 *            the developer to set
+	 * @param user
+	 *            the user to set
 	 */
-	public void setDeveloper(User developer) {
-		this.developer = developer;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	/**
